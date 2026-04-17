@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Process 3 - Feature Categorization</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#e0f7ff,#dfffe7);
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar{
+            position:fixed;
+            top:20px;
+            left:20px;
+            width:260px;
+            height:calc(100vh - 40px);
+            padding:30px;
+            border-radius:30px;
+            background:#14b8a6;
+            box-shadow:0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .logo{
+            font-size:22px;
+            font-weight:700;
+            margin-bottom:40px;
+            display:flex;
+            gap:10px;
+            align-items:center;
+        }
+
+        .logo i{
+            color:#ff3b3b;
+            text-shadow:0 0 10px #ff3b3b;
+        }
+
+        .nav-links{
+            list-style:none;
+        }
+
+        .nav-links li{
+            margin-bottom:18px;
+        }
+
+        .nav-links a{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:12px 18px;
+            border-radius:30px;
+            text-decoration:none;
+            color:black;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover{
+            background:white;
+            transform:translateX(6px);
+        }
+
+        .nav-links a.active{
+            background:linear-gradient(90deg,#ffcc00,#ff3b3b);
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar{
+            margin-left:300px;
+            margin-top:20px;
+            margin-right:20px;
+            padding:20px 30px;
+            border-radius:30px;
+            background:#14b8a6;
+            display:flex;
+            justify-content:space-between;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main{
+            margin-left:300px;
+            padding:40px;
+        }
+
+        /* ================= CARD ================= */
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:25px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        /* ================= FEATURE GRID ================= */
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:20px;
+        }
+
+        .feature-box{
+            background:#f8fafc;
+            border-radius:20px;
+            padding:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.1);
+            transition:0.3s;
+        }
+
+        .feature-box:hover{
+            transform:translateY(-5px);
+            box-shadow:0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .feature-box h3{
+            margin-bottom:10px;
+        }
+
+        .feature-box i{
+            font-size:24px;
+            margin-bottom:10px;
+            color:#14b8a6;
+        }
+
+        .list-box{
+            max-height:200px;
+            overflow:auto;
+        }
+
+        .list-box ul{
+            padding-left:20px;
+        }
+
+        .list-box li{
+            margin-bottom:6px;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .btn{
+            margin-top:25px;
+            padding:10px 25px;
+            border:none;
+            border-radius:25px;
+            background:linear-gradient(90deg,#00eaff,#00ff88);
+            cursor:pointer;
+            font-weight:600;
+        }
+
+        .btn:hover{
+            transform:scale(1.08);
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- SIDEBAR -->
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">
+        <i class="fas fa-bolt"></i> Lead2Customer
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#" >
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/view_users">
+                <i class="fas fa-users"></i> View Users
+            </a>
+        </li>
+
+        <li>
+            <a href="/process1" class="active">
+                <i class="fas fa-brain"></i> Train Model
+            </a>
+        </li>
+
+        <li>
+            <a href="/logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <h3><i class="fas fa-layer-group"></i> Process 3: Feature Categorization</h3>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="card">
+
+        <div class="grid">
+
+            <!-- NUMERICAL -->
+            <div class="feature-box">
+                <i class="fas fa-chart-line"></i>
+                <h3>Numerical Features</h3>
+
+                <div class="list-box">
+                    <ul>
+                        {% for f in numerical %}
+                        <li>{{ f }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CATEGORICAL -->
+            <div class="feature-box">
+                <i class="fas fa-tags"></i>
+                <h3>Categorical Features</h3>
+
+                <div class="list-box">
+                    <ul>
+                        {% for f in categorical %}
+                        <li>{{ f }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TARGET -->
+            <div class="feature-box">
+                <i class="fas fa-bullseye"></i>
+                <h3>Target Variable</h3>
+
+                <div class="list-box">
+                    <ul>
+                        {% for f in target %}
+                        <li>{{ f }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- NEXT BUTTON -->
+        <a href="/process4">
+            <button class="btn">Next ➡ Process 4</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

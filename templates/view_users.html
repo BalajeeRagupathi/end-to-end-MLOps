@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Users - Lead2Customer</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#e0f7ff,#dfffe7);
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar{
+            position:fixed;
+            top:20px;
+            left:20px;
+            width:260px;
+            height:calc(100vh - 40px);
+            padding:30px;
+            border-radius:30px;
+            background:#14b8a6;
+            box-shadow:0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .logo{
+            font-size:22px;
+            font-weight:700;
+            margin-bottom:40px;
+            display:flex;
+            gap:10px;
+            align-items:center;
+        }
+
+        .logo i{
+            color:#ff3b3b;
+            text-shadow:0 0 10px #ff3b3b;
+        }
+
+        .nav-links{
+            list-style:none;
+        }
+
+        .nav-links li{
+            margin-bottom:18px;
+        }
+
+        .nav-links a{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:12px 18px;
+            border-radius:30px;
+            text-decoration:none;
+            color:black;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover{
+            background:white;
+            transform:translateX(6px);
+        }
+
+        .nav-links a.active{
+            background:linear-gradient(90deg,#ffcc00,#ff3b3b);
+            color:black;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar{
+            margin-left:300px;
+            margin-top:20px;
+            margin-right:20px;
+            padding:20px 30px;
+            border-radius:30px;
+            background:#14b8a6;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            box-shadow:0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        /* ================= MAIN ================= */
+
+        .main{
+            margin-left:300px;
+            padding:40px;
+        }
+
+        /* ================= CARD ================= */
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:25px;
+            margin-bottom:30px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .card h2{
+            margin-bottom:20px;
+        }
+
+        /* ================= TABLE ================= */
+
+        .table-box{
+            max-height:250px;
+            overflow:auto;
+            border-radius:15px;
+            border:1px solid #ddd;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th{
+            background:#14b8a6;
+            color:white;
+            padding:10px;
+            position:sticky;
+            top:0;
+        }
+
+        td{
+            padding:10px;
+            border-bottom:1px solid #eee;
+        }
+
+        tr:hover{
+            background:#f1f5f9;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">
+        <i class="fas fa-bolt"></i> Lead2Customer
+    </div>
+
+    <ul class="nav-links">
+
+        <li><a href="/admin_dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+
+        <li><a href="/view_users" class="active"><i class="fas fa-users"></i> View Users</a></li>
+
+        <li><a href="/process1"><i class="fas fa-brain"></i> Train Model</a></li>
+
+        <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
+    </ul>
+
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <h3><i class="fas fa-users"></i> All Users</h3>
+    <span>Admin Panel</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- STUDENTS -->
+<div class="card">
+    <h2>Students</h2>
+
+    <div class="table-box">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Username</th>
+            </tr>
+
+            {% for s in students %}
+            <tr>
+                <td>{{ s.id }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.email }}</td>
+                <td>{{ s.mobile }}</td>
+                <td>{{ s.username }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+    <!-- MANAGERS -->
+<div class="card">
+    <h2>Marketing Managers</h2>
+
+    <div class="table-box">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Company</th>
+                <th>Location</th>
+                <th>Type</th>
+                <th>Username</th>
+            </tr>
+
+            {% for m in managers %}
+            <tr>
+                <td>{{ m.id }}</td>
+                <td>{{ m.name }}</td>
+                <td>{{ m.email }}</td>
+                <td>{{ m.mobile }}</td>
+                <td>{{ m.company_name }}</td>
+                <td>{{ m.location }}</td>
+                <td>{{ m.company_type }}</td>
+                <td>{{ m.username }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+    <!-- TELECALLERS -->
+<div class="card">
+    <h2>Telecallers</h2>
+
+    <div class="table-box">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Work Type</th>
+                <th>Work Time</th>
+                <th>Username</th>
+            </tr>
+
+            {% for t in telecallers %}
+            <tr>
+                <td>{{ t.id }}</td>
+                <td>{{ t.name }}</td>
+                <td>{{ t.email }}</td>
+                <td>{{ t.mobile }}</td>
+                <td>{{ t.working_type }}</td>
+                <td>{{ t.working_time }}</td>
+                <td>{{ t.username }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Process 1 - Dataset Preview</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#e0f7ff,#dfffe7);
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar{
+            position:fixed;
+            top:20px;
+            left:20px;
+            width:260px;
+            height:calc(100vh - 40px);
+            padding:30px;
+            border-radius:30px;
+
+            /* MATCH NAVBAR COLOR */
+            background: #14b8a6;   /* solid teal */
+            box-shadow:0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        /* LOGO */
+        .logo{
+            font-size:22px;
+            font-weight:700;
+            margin-bottom:40px;
+            color:black;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .logo i{
+            font-size:24px;
+            color:#ff3b3b;
+            text-shadow:0 0 10px #ff3b3b;
+        }
+
+        /* NAV LINKS */
+        .nav-links{
+            list-style:none;
+        }
+
+        .nav-links li{
+            margin-bottom:18px;
+        }
+
+        .nav-links a{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:12px 18px;
+            border-radius:30px;
+            text-decoration:none;
+            color:black;
+            font-weight:500;
+            transition:0.3s;
+        }
+
+        .nav-links a i{
+            font-size:18px;
+        }
+
+        .nav-links a:hover{
+            background:white;
+            transform:translateX(6px);
+            box-shadow:0 0 12px #00eaff;
+        }
+
+        .nav-links a.active{
+            background:linear-gradient(90deg,#ffcc00,#ff3b3b);
+            color:black;
+            box-shadow:0 0 12px #ff3b3b;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar{
+            margin-left:300px;
+            margin-top:20px;
+            margin-right:20px;
+            padding:20px 30px;
+            border-radius:30px;
+            background:#14b8a6;
+            display:flex;
+            justify-content:space-between;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main{
+            margin-left:300px;
+            padding:40px;
+        }
+
+        /* ================= CARD ================= */
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:25px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        /* ================= TABLE ================= */
+
+        .table-box{
+            max-height:400px;
+            overflow:auto;
+            border-radius:15px;
+            border:1px solid #ddd;
+        }
+
+        table{
+            width:100%;
+            min-width:1200px;
+            border-collapse:collapse;
+        }
+
+        th{
+            background:#14b8a6;
+            color:white;
+            padding:10px;
+            position:sticky;
+            top:0;
+        }
+
+        td{
+            padding:10px;
+            border-bottom:1px solid #eee;
+        }
+
+        tr:hover{
+            background:#f1f5f9;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .btn{
+            margin-top:20px;
+            padding:10px 25px;
+            border:none;
+            border-radius:25px;
+            background:linear-gradient(90deg,#00eaff,#00ff88);
+            cursor:pointer;
+            font-weight:600;
+        }
+
+        .btn:hover{
+            transform:scale(1.08);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">
+        <i class="fas fa-bolt"></i> Lead2Customer
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#" >
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/view_users">
+                <i class="fas fa-users"></i> View Users
+            </a>
+        </li>
+
+        <li>
+            <a href="/process1" class="active">
+                <i class="fas fa-brain"></i> Train Model
+            </a>
+        </li>
+
+        <li>
+            <a href="/logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <h3><i class="fas fa-database"></i> Process 1: Dataset Preview</h3>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="card">
+
+        <div class="table-box">
+
+            <table>
+
+                <tr>
+                    {% for col in columns %}
+                    <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+
+                {% for row in data %}
+                <tr>
+                    {% for item in row %}
+                    <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <!-- NEXT BUTTON -->
+        <a href="/process2">
+            <button class="btn">Next ➡ Process 2</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

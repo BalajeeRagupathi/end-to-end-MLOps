@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Results - Lead2Customer</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body{background:linear-gradient(135deg,#e0f7ff,#dfffe7);}
+
+        /* SIDEBAR */
+        .sidebar{
+            position:fixed;top:20px;left:20px;width:260px;height:calc(100vh - 40px);
+            padding:30px;border-radius:30px;background:#14b8a6;
+        }
+
+        .logo{font-size:22px;font-weight:700;margin-bottom:40px;display:flex;gap:10px;}
+
+        .nav-links{list-style:none;}
+        .nav-links li{margin-bottom:18px;}
+
+        .nav-links a{
+            display:flex;gap:12px;padding:12px;border-radius:30px;
+            text-decoration:none;color:black;
+        }
+
+        .nav-links a:hover{background:white;}
+        .nav-links a.active{background:linear-gradient(90deg,#ffcc00,#ff3b3b);}
+
+        /* TOPBAR */
+        .topbar{
+            margin-left:300px;margin-top:20px;margin-right:20px;
+            padding:20px;border-radius:30px;background:#14b8a6;
+            display:flex;justify-content:space-between;
+        }
+
+        /* MAIN */
+        .main{margin-left:300px;padding:40px;}
+
+        /* CARD */
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:25px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        h2{text-align:center;margin-bottom:25px;}
+
+        /* FILTER PANEL */
+        .controls{
+            background:#f8fafc;
+            padding:20px;
+            border-radius:20px;
+            margin-bottom:25px;
+            display:flex;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            gap:15px;
+            align-items:center;
+        }
+
+        select{
+            padding:10px 15px;
+            border-radius:10px;
+            border:1px solid #ccc;
+        }
+
+        .btn{
+            padding:10px 20px;
+            border:none;
+            border-radius:10px;
+            background:linear-gradient(90deg,#00eaff,#00ff88);
+            font-weight:600;
+            cursor:pointer;
+        }
+
+        .btn:hover{
+            transform:scale(1.05);
+        }
+
+        /* TABLE */
+        .table-container{
+            max-height:450px;
+            overflow:auto;
+            border-radius:15px;
+            margin-bottom:30px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th{
+            background:#14b8a6;
+            color:white;
+            padding:14px;
+            position:sticky;
+            top:0;
+        }
+
+        td{
+            padding:12px;
+            text-align:center;
+            border-bottom:1px solid #eee;
+        }
+
+        tr:hover{background:#f1f5f9;}
+
+        /* CARDS GRID */
+        .cards-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:25px;
+        }
+
+        .result-card{
+            padding:25px;
+            border-radius:20px;
+            background:linear-gradient(135deg,#ffffff,#f1f5f9);
+            box-shadow:0 10px 30px rgba(0,0,0,0.08);
+            transition:0.3s;
+        }
+
+        .result-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .progress{
+            background:#e5e7eb;
+            height:12px;
+            border-radius:10px;
+            margin:12px 0;
+        }
+
+        .progress-bar{
+            height:100%;
+            border-radius:10px;
+        }
+
+        ul{margin-left:15px;margin-top:8px;}
+
+        .back{
+            text-align:center;margin-top:35px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="logo"><i class="fas fa-bolt"></i> Lead2Customer</div>
+
+    <ul class="nav-links">
+        <li><a href="/manager_dashboard"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li><a href="/add_telecaller"><i class="fas fa-user-plus"></i> Add Telecaller</a></li>
+        <li><a href="/upload_data"><i class="fas fa-upload"></i> Upload Leads</a></li>
+        <li><a href="/view_predictions" class="active"><i class="fas fa-chart-line"></i> Predictions</a></li>
+        <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <h3><i class="fas fa-chart-line"></i> Prediction Results</h3>
+    <span>Manager Panel</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="card">
+
+<h2>Lead Prediction Results</h2>
+
+<!-- CONTROLS -->
+<div class="controls">
+
+<div>
+<label><b>Filter:</b></label>
+<select id="filterSelect" onchange="filterResults()">
+<option value="all">All</option>
+<option value="High Potential">High Potential</option>
+<option value="Low Potential">Low Potential</option>
+</select>
+</div>
+
+<form method="POST" action="/export_and_send" style="display:flex; gap:10px; flex-wrap:wrap;">
+
+<input type="hidden" name="filter_value" id="filterValueInput">
+
+<select name="telecaller" required>
+<option value="">Select Telecaller</option>
+{% for t in telecallers %}
+<option value="{{ t.username }}|{{ t.email }}">
+{{ t.username }} ({{ t.email }})
+</option>
+{% endfor %}
+</select>
+
+<button type="submit" class="btn">📥 Assign + Download + Send</button>
+
+</form>
+
+</div>
+
+<!-- TABLE -->
+<div class="table-container">
+
+<table>
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Probability</th>
+<th>Status</th>
+</tr>
+
+{% for r in results %}
+<tr class="result-row" data-risk="{{ r.risk }}">
+<td>{{ r.name }}</td>
+<td>{{ r.phone }}</td>
+<td>{{ r.prob }}%</td>
+<td style="color:{% if r.risk=='High Potential' %}green{% else %}red{% endif %}; font-weight:bold;">
+{{ r.risk }}
+</td>
+</tr>
+{% endfor %}
+</table>
+
+</div>
+
+<!-- CARDS -->
+<div class="cards-grid">
+
+{% for r in results %}
+<div class="result-card" data-risk="{{ r.risk }}">
+
+<h3>{{ r.name }} — {{ r.risk }}</h3>
+<p>📞 {{ r.phone }}</p>
+
+<p><b>Probability:</b> {{ r.prob }}%</p>
+
+<div class="progress">
+<div class="progress-bar"
+style="width:{{ r.prob }}%;
+background:{% if r.risk=='High Potential' %}green{% else %}red{% endif %};">
+</div>
+</div>
+
+<p><b>Summary:</b> {{ r.summary }}</p>
+
+<p><b>Insights:</b></p>
+<ul>
+{% for f in r.positive %}
+<li style="color:green;">✔ {{ f }}</li>
+{% endfor %}
+{% for f in r.negative %}
+<li style="color:red;">✖ {{ f }}</li>
+{% endfor %}
+</ul>
+
+<p><b>Action:</b> {{ r.action }}</p>
+
+</div>
+{% endfor %}
+
+</div>
+
+<div class="back">
+<a href="/manager_dashboard">
+<button class="btn">⬅ Back to Dashboard</button>
+</a>
+</div>
+
+</div>
+
+</div>
+
+<script>
+function filterResults() {
+    let selected = document.getElementById("filterSelect").value;
+    document.getElementById("filterValueInput").value = selected;
+
+    document.querySelectorAll(".result-row").forEach(row=>{
+        let risk=row.getAttribute("data-risk");
+        row.style.display=(selected==="all"||risk===selected)?"":"none";
+    });
+
+    document.querySelectorAll(".result-card").forEach(card=>{
+        let risk=card.getAttribute("data-risk");
+        card.style.display=(selected==="all"||risk===selected)?"":"none";
+    });
+}
+window.onload = filterResults;
+</script>
+
+</body>
+</html>

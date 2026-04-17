@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Telecaller Dashboard - Lead2Customer</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body{background:linear-gradient(135deg,#e0f7ff,#dfffe7);}
+
+        /* SIDEBAR */
+        .sidebar{
+            position:fixed;top:20px;left:20px;width:260px;height:calc(100vh - 40px);
+            padding:30px;border-radius:30px;background:#14b8a6;
+        }
+
+        .logo{font-size:22px;font-weight:700;margin-bottom:40px;display:flex;gap:10px;}
+
+        .nav-links{list-style:none;}
+        .nav-links li{margin-bottom:18px;}
+
+        .nav-links a{
+            display:flex;gap:12px;padding:12px;border-radius:30px;
+            text-decoration:none;color:black;
+        }
+
+        .nav-links a:hover{background:white;}
+        .nav-links a.active{background:linear-gradient(90deg,#ffcc00,#ff3b3b);}
+
+        /* TOPBAR */
+        .topbar{
+            margin-left:300px;margin-top:20px;margin-right:20px;
+            padding:20px;border-radius:30px;background:#14b8a6;
+            display:flex;justify-content:space-between;
+        }
+
+        /* MAIN */
+        .main{margin-left:300px;padding:40px;}
+
+        /* CARD */
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:25px;
+            box-shadow:0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        h2{text-align:center;margin-bottom:20px;}
+
+        /* TABLE */
+        .table-container{
+            max-height:450px;
+            overflow:auto;
+            border-radius:12px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            font-size:14px;
+        }
+
+        th{
+            background:#2563eb;
+            color:white;
+            padding:12px;
+            position:sticky;
+            top:0;
+        }
+
+        td{
+            padding:10px;
+            text-align:center;
+            border-bottom:1px solid #ddd;
+        }
+
+        tr:hover{background:#f1f5f9;}
+
+        /* STATUS */
+        .status{
+            padding:5px 10px;
+            border-radius:8px;
+            color:white;
+            font-size:13px;
+        }
+
+        .joined{background:green;}
+        .interested{background:orange;}
+        .not{background:red;}
+        .pending{background:gray;}
+
+        /* TYPE */
+        .high{color:green;font-weight:bold;}
+        .low{color:red;font-weight:bold;}
+
+        /* INPUT */
+        input[type="number"], select{
+            padding:5px;
+            border-radius:5px;
+            border:1px solid #ccc;
+        }
+
+        /* BUTTON */
+        .btn{
+            background:#14b8a6;
+            color:white;
+            border:none;
+            padding:6px 12px;
+            border-radius:6px;
+            cursor:pointer;
+        }
+
+        .btn:hover{
+            background:#0d9488;
+        }
+
+        .call-link{
+            color:green;
+            text-decoration:none;
+            font-size:13px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">
+        <i class="fas fa-phone"></i> Telecaller Panel
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="/telecaller_dashboard" class="active">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/telecaller_dashboard">
+                <i class="fas fa-list"></i> My Leads
+            </a>
+        </li>
+
+        <li>
+            <a href="/logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <h3><i class="fas fa-phone"></i> Telecaller Dashboard</h3>
+    <span>Call Management Panel</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="card">
+
+<h2>📞 Telecaller Dashboard</h2>
+
+<div class="table-container">
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Probability</th>
+<th>Lead Type</th>
+<th>Call Count</th>
+<th>Status</th>
+<th>Update</th>
+</tr>
+
+{% for l in leads %}
+<tr>
+
+<td><b>{{ l.name }}</b></td>
+
+<td>
+📞 {{ l.phone }} <br>
+<a href="tel:{{ l.phone }}" class="call-link">Call</a>
+</td>
+
+<td>{{ l.prob }}%</td>
+
+<td class="{% if l.risk=='High Potential' %}high{% else %}low{% endif %}">
+{{ l.risk }}
+</td>
+
+<td>
+
+<form method="POST" action="/update_status" style="display:flex; gap:5px; justify-content:center; align-items:center;">
+
+<input type="hidden" name="lead_id" value="{{ l.id }}">
+
+<input type="number" name="call_count" value="{{ l.call_count or 0 }}" min="0" style="width:60px; text-align:center;">
+
+</td>
+
+<td>
+
+<span class="status
+{% if l.status=='Joined' %}joined
+{% elif l.status=='Interested' %}interested
+{% elif l.status=='Not Interested' %}not
+{% else %}pending{% endif %}">
+{{ l.status }}
+</span>
+
+</td>
+
+<td>
+
+<select name="status">
+<option value="Pending" {% if l.status=='Pending' %}selected{% endif %}>Pending</option>
+<option value="Interested" {% if l.status=='Interested' %}selected{% endif %}>Interested</option>
+<option value="Not Interested" {% if l.status=='Not Interested' %}selected{% endif %}>Not Interested</option>
+<option value="Joined" {% if l.status=='Joined' %}selected{% endif %}>Joined</option>
+</select>
+
+<button type="submit" class="btn">Save</button>
+
+</form>
+
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+{% if leads|length == 0 %}
+<p style="text-align:center; margin-top:20px;">No leads assigned</p>
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

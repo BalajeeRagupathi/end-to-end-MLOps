@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manager Dashboard - Lead2Customer</title>
+
+    <!-- Fonts + Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#e0f7ff,#dfffe7);
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar{
+            position:fixed;
+            top:20px;
+            left:20px;
+            width:260px;
+            height:calc(100vh - 40px);
+            padding:30px;
+            border-radius:30px;
+            background:#14b8a6;
+            box-shadow:0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .logo{
+            font-size:22px;
+            font-weight:700;
+            margin-bottom:40px;
+            color:black;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .logo i{
+            font-size:24px;
+            color:#ff3b3b;
+        }
+
+        .nav-links{
+            list-style:none;
+        }
+
+        .nav-links li{
+            margin-bottom:18px;
+        }
+
+        .nav-links a{
+            display:flex;
+            align-items:center;
+            gap:12px;
+            padding:12px 18px;
+            border-radius:30px;
+            text-decoration:none;
+            color:black;
+            font-weight:500;
+            transition:0.3s;
+        }
+
+        .nav-links a:hover{
+            background:white;
+            transform:translateX(6px);
+        }
+
+        .nav-links a.active{
+            background:linear-gradient(90deg,#ffcc00,#ff3b3b);
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar{
+            margin-left:300px;
+            margin-top:20px;
+            margin-right:20px;
+            padding:20px 30px;
+            border-radius:30px;
+            background:#14b8a6;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main{
+            margin-left:300px;
+            padding:40px;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:30px;
+        }
+
+        /* ================= CARDS ================= */
+
+        .card{
+            background:white;
+            padding:35px;
+            border-radius:25px;
+            text-align:center;
+            position:relative;
+            box-shadow:0 20px 50px rgba(0,0,0,0.1);
+            transition:0.35s;
+        }
+
+        .card:hover{
+            transform:translateY(-10px);
+        }
+
+        .card i{
+            font-size:40px;
+            margin-bottom:15px;
+            color:#00eaff;
+        }
+
+        .card h2{
+            margin-bottom:10px;
+        }
+
+        .btn{
+            display:inline-block;
+            text-decoration:none;
+            padding:10px 25px;
+            border-radius:25px;
+            font-weight:600;
+            background:linear-gradient(90deg,#00eaff,#00ff88);
+            color:black;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">
+        <i class="fas fa-bolt"></i> Lead2Customer
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#" class="active">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/add_telecaller">
+                <i class="fas fa-user-plus"></i> Add Telecaller
+            </a>
+        </li>
+
+        <li>
+            <a href="/upload_data">
+                <i class="fas fa-upload"></i> Upload Leads
+            </a>
+        </li>
+
+        <li>
+            <a href="/manager_lead_status">
+                <i class="fas fa-chart-line"></i> View Status
+            </a>
+        </li>
+
+        <li>
+            <a href="/logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+
+    <h3><i class="fas fa-briefcase"></i> Manager Dashboard</h3>
+    <span><i class="fas fa-user-tie"></i> Manager Panel</span>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <div class="grid">
+
+        <!-- ADD TELECALLER -->
+        <div class="card">
+            <i class="fas fa-user-plus"></i>
+            <h2>Add Telecaller</h2>
+            <p>Create and manage telecaller accounts</p>
+            <a href="/add_telecaller" class="btn">Open</a>
+        </div>
+
+        <!-- UPLOAD DATA -->
+        <div class="card">
+            <i class="fas fa-upload"></i>
+            <h2>Upload & Predict</h2>
+            <p>Upload leads and run prediction</p>
+            <a href="/upload_data" class="btn">Upload</a>
+        </div>
+
+        <!-- VIEW PREDICTIONS -->
+        <div class="card">
+            <i class="fas fa-chart-line"></i>
+            <h2>Check Status</h2>
+            <p>Check Call and student status</p>
+            <a href="/manager_lead_status" class="btn">View</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

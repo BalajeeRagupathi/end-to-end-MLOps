@@ -1,0 +1,21 @@
+Lead_ID,Name,Phone_Number,Age,Gender,Location,Education,Course_Interest,Budget,Occupation,Experience_Years,Source,Device_Type,Time_Spent_Min,Pages_Visited,Clicks,Previous_Enquiry,Email_Opened,Email_Clicked,Demo_Attended,Webinar_Attended,Preferred_Time,Payment_Mode,Discount_Response,Engagement_Score,Lead_Score,Followup_Count,Call_Response
+L1001,Amit Sharma,9876543210,29,Male,Chennai,UG,Data Science,55000,Working,3,LinkedIn,Mobile,35,12,18,Yes,Yes,Yes,Yes,Yes,Evening,EMI,Positive,78,85,3,Highly Interested
+L1002,Priya Nair,9876543211,24,Female,Kochi,PG,AI,62000,Student,0,Instagram,Mobile,28,10,15,No,Yes,Yes,No,Yes,Afternoon,EMI,Positive,65,70,2,Interested
+L1003,Rahul Mehta,9876543212,34,Male,Mumbai,UG,Web Development,40000,Working,5,Website,Laptop,15,6,8,Yes,No,No,No,No,Night,Full,Negative,30,40,5,Not Interested
+L1004,Divya Iyer,9876543213,27,Female,Bangalore,PG,Data Science,72000,Working,4,LinkedIn,Laptop,45,15,25,Yes,Yes,Yes,Yes,Yes,Evening,EMI,Positive,85,90,2,Highly Interested
+L1005,Suresh Kumar,9876543214,38,Male,Salem,UG,Cyber Security,50000,Working,8,Facebook,Mobile,20,8,10,No,No,No,No,No,Morning,Full,Neutral,40,45,6,Not Interested
+L1006,Kavya Reddy,9876543215,23,Female,Hyderabad,UG,AI,68000,Student,0,Instagram,Mobile,50,18,30,Yes,Yes,Yes,Yes,Yes,Night,EMI,Positive,88,92,1,Highly Interested
+L1007,Arjun Singh,9876543216,31,Male,Delhi,PG,Cloud Computing,47000,Working,6,YouTube Ads,Laptop,25,9,12,Yes,Yes,No,No,Yes,Evening,Full,Neutral,55,60,4,Interested
+L1008,Meena Krishnan,9876543217,26,Female,Chennai,UG,Digital Marketing,35000,Student,0,Website,Mobile,30,11,20,No,Yes,Yes,No,Yes,Afternoon,EMI,Positive,60,65,3,Interested
+L1009,Rohit Verma,9876543218,42,Male,Pune,PG,Cyber Security,80000,Working,10,LinkedIn,Laptop,55,20,40,Yes,Yes,Yes,Yes,Yes,Night,Full,Positive,92,95,1,Highly Interested
+L1010,Sneha Patel,9876543219,28,Female,Ahmedabad,UG,Web Development,30000,Student,1,Instagram,Mobile,18,5,7,No,No,No,No,No,Morning,EMI,Negative,25,30,6,Not Interested
+L1011,Vikram Rao,9876543220,36,Male,Bangalore,PG,Data Science,75000,Working,7,LinkedIn,Laptop,40,14,22,Yes,Yes,Yes,Yes,Yes,Evening,Full,Positive,82,88,2,Highly Interested
+L1012,Aishwarya Das,9876543221,22,Female,Kolkata,UG,AI,60000,Student,0,Facebook,Mobile,33,13,19,Yes,Yes,Yes,No,Yes,Afternoon,EMI,Positive,70,75,3,Interested
+L1013,Manoj Gupta,9876543222,45,Male,Delhi,UG,Cloud Computing,45000,Working,12,Website,Laptop,12,4,5,No,No,No,No,No,Morning,Full,Negative,20,25,7,Not Interested
+L1014,Nisha Menon,9876543223,30,Female,Kochi,PG,Digital Marketing,52000,Working,5,Instagram,Mobile,38,16,28,Yes,Yes,Yes,Yes,Yes,Night,EMI,Positive,80,85,2,Highly Interested
+L1015,Karthik Subramani,9876543224,27,Male,Chennai,UG,Data Science,65000,Student,1,LinkedIn,Laptop,42,17,30,Yes,Yes,Yes,Yes,Yes,Evening,Full,Positive,84,89,1,Highly Interested
+L1016,Neha Singh,9876543225,25,Female,Pune,PG,AI,58000,Student,0,YouTube Ads,Mobile,29,10,16,No,Yes,Yes,No,Yes,Afternoon,EMI,Positive,66,70,2,Interested
+L1017,Ramesh Pillai,9876543226,39,Male,Trivandrum,UG,Cyber Security,48000,Working,9,Facebook,Laptop,22,7,9,No,No,No,No,No,Morning,Full,Neutral,35,40,5,Not Interested
+L1018,Anjali Sharma,9876543227,23,Female,Delhi,UG,Web Development,31000,Student,0,Instagram,Mobile,26,9,13,Yes,No,Yes,No,Yes,Evening,EMI,Neutral,58,62,4,Interested
+L1019,Deepak Yadav,9876543228,33,Male,Noida,PG,Cloud Computing,70000,Working,6,LinkedIn,Laptop,48,18,35,Yes,Yes,Yes,Yes,Yes,Night,Full,Positive,90,94,1,Highly Interested
+L1020,Pooja Kulkarni,9876543229,29,Female,Mumbai,UG,Digital Marketing,42000,Working,4,Website,Mobile,34,12,21,Yes,Yes,No,No,Yes,Afternoon,EMI,Neutral,62,67,3,Interested

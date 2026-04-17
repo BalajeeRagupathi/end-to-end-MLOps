@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lead System</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #ffffff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .navbar a {
+            color: #0f172a;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .navbar a:hover {
+            color: #2563eb;
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 30px;
+        }
+
+        /* CARD */
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* HEADINGS */
+        h2 {
+            margin-bottom: 20px;
+            color: #0f172a;
+        }
+
+        /* FORM */
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #cbd5f5;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 5px rgba(37,99,235,0.2);
+        }
+
+        /* BUTTON */
+        button {
+            padding: 12px;
+            background: linear-gradient(to right, #2563eb, #38bdf8);
+            border: none;
+            color: white;
+            font-weight: bold;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f1f5f9;
+        }
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: #2563eb;
+    color: white;
+    z-index: 1;
+}
+
+td, th {
+    padding: 10px;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background: #f1f5f9;
+}
+
+.process-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.process-nav a {
+    padding: 10px 20px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.process-nav a:hover {
+    background: #1d4ed8;
+}
+        /* FOOTER */
+        .footer {
+            background: #ffffff;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            color: #64748b;
+            font-size: 14px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* CENTER FORM */
+        .center-box {
+            max-width: 400px;
+            margin: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <div>
+        <a href="/">🏠 Home</a>
+
+        {% if 'admin' in session %}
+            <a href="/admin_dashboard">Admin</a>
+        {% elif 'student' in session %}
+            <a href="/student_dashboard">Student</a>
+        {% elif 'manager' in session %}
+            <a href="/manager_dashboard">Manager</a>
+        {% elif 'telecaller' in session %}
+            <a href="/telecaller_dashboard">Telecaller</a>
+        {% endif %}
+    </div>
+
+    <div>
+        {% if 'admin' in session or 'student' in session or 'manager' in session or 'telecaller' in session %}
+            <a href="/logout" style="color:#ef4444;">Logout</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<div class="footer">
+    Lead Conversion System © 2026 | Designed Smartly 🚀
+</div>
+
+</body>
+</html>
